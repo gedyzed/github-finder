@@ -17,4 +17,8 @@ npm install
 npm run dev
 ```
 
+(src/assets/home.jpg)
+(src/assets/profile.jpg)
+(src/assets/search.jpg)
+
  
