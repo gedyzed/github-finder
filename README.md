@@ -17,8 +17,8 @@ npm install
 npm run dev
 ```
 
-(src/assets/home.jpg)
-(src/assets/profile.jpg)
-(src/assets/search.jpg)
+![App Screenshot](./src/assets/home.jpg)
+![App Screenshot](src/assets/profile.jpg)
+![App Screenshot](src/assets/search.jpg)
 
  
