@@ -18,7 +18,7 @@ npm run dev
 ```
 
 ![App Screenshot](./src/assets/home.jpg)
-![App Screenshot](src/assets/profile.jpg)
 ![App Screenshot](src/assets/search.jpg)
+![App Screenshot](src/assets/profile.jpg)
 
  
