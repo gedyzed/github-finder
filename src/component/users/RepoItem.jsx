@@ -12,34 +12,30 @@ const RepoItem = ({ repo }) => {
         stargazers_count,
     } = repo
     return (
-
-        <div className="mb-2 rounded-md card bg-gray-800 hover:bg-gray-900">
+        <div className="mb-2 rounded-md card bg-base-200/50 hover:bg-base-200 transition-all duration-300 hover:scale-[1.01] border border-base-300">
             <div className="card-body">
                 <h3 className="mb-2 text-xl font-semibold">
-                    <a href={html_url}>
-                        <FaLink className="inline mr-1" /> {name}
+                    <a href={html_url} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors">
+                        <FaLink className="inline" /> {name}
                     </a>
                 </h3>
-                <p className="mb-3">{description}</p>
-                <div>
-                    <div className="mr-2 badge badge-info badge-lg">
-                        <FaEye className="mr-2" /> {watchers_count}
+                <p className="mb-3 opacity-80">{description}</p>
+                <div className="flex flex-wrap gap-2">
+                    <div className="badge badge-info gap-2 badge-lg shadow-sm">
+                        <FaEye /> {watchers_count}
                     </div>
-                    <div className="mr-2 badge badge-success badge-lg">
-                        <FaStar className="mr-2" /> {stargazers_count}
+                    <div className="badge badge-success gap-2 badge-lg shadow-sm">
+                        <FaStar /> {stargazers_count}
                     </div>
-                    <div className="mr-2 badge badge-error badge-lg">
-                        <FaInfo className="mr-2" /> {open_issues}
+                    <div className="badge badge-error gap-2 badge-lg shadow-sm">
+                        <FaInfo /> {open_issues}
                     </div>
-                    <div className="mr-2 badge badge-warning badge-lg">
-                        <FaUtensils className="mr-2" /> {forks}
+                    <div className="badge badge-warning gap-2 badge-lg shadow-sm">
+                        <FaUtensils /> {forks}
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     )
 }
 

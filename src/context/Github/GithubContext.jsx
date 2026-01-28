@@ -1,6 +1,6 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer, useCallback } from "react";
 import GithubReducers from "./GithubReducers";
-const GithubContext = createContext();
+export const GithubContext = createContext();
 const GITHUB_URL = import.meta.env.VITE_GITHUB_API;
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
@@ -15,7 +15,9 @@ export const GithubProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(GithubReducers, initailState);
 
-    const searchUsers = async (query) => {
+    const setLoading = useCallback(() => dispatch({ type: 'SET_LOADING' }), [])
+
+    const searchUsers = useCallback(async (query) => {
         setLoading();
         const response = await fetch(`${GITHUB_URL}/search/users?q=${query}`,
             {
@@ -27,9 +29,9 @@ export const GithubProvider = ({ children }) => {
 
         const { items } = await response.json();
         dispatch({ type: 'GET_USERS', payload: items });
-    } 
+    }, [setLoading])
 
-    const getUser = async (login) => {
+    const getUser = useCallback(async (login) => {
         setLoading();
         const response = await fetch(`${GITHUB_URL}/users/${login}`,
             {
@@ -39,21 +41,21 @@ export const GithubProvider = ({ children }) => {
             },
         )
 
-        if (response.status === 404){
-            window.location ="/notfound"
+        if (response.status === 404) {
+            window.location = "/notfound"
         }
-        else{
+        else {
             const data = await response.json();
             dispatch({ type: 'GET_USER', payload: data });
         }
 
-    } 
-    const getUserRepos = async (login) => {
+    }, [setLoading])
+    const getUserRepos = useCallback(async (login) => {
         setLoading();
 
         const params = new URLSearchParams({
-            sort: "created", 
-            direction: "desc", 
+            sort: "created",
+            direction: "desc",
             per_page: 10
         });
 
@@ -65,18 +67,18 @@ export const GithubProvider = ({ children }) => {
             },
         )
 
-        if (response.status === 404){
-            window.location ="/notfound"
+        if (response.status === 404) {
+            window.location = "/notfound"
         }
-        else{
+        else {
 
             const data = await response.json();
             dispatch({ type: 'GET_USER_REPO', payload: data });
         }
 
-    } 
+    }, [setLoading])
 
-    const setLoading = () => dispatch({ type: 'SET_LOADING' })
+
 
     return <GithubContext.Provider
         value={{
@@ -90,5 +92,3 @@ export const GithubProvider = ({ children }) => {
         {children}
     </GithubContext.Provider>
 }
-
-export default GithubContext;
