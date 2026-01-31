@@ -8,7 +8,7 @@ const ReposList = ({ repos }) => {
         <h2 className='text-3xl my-4 font-bold card-title text-secondary'>
           Latest Repositories
         </h2>
-        <div className='grid grid-cols-1 gap-4'>
+        <div className='grid grid-cols-2 gap-4'>
           {repos.map((repo) => (
             <RepoItem key={repo.id} repo={repo} />
           ))}
